@@ -85,7 +85,36 @@ def farbe(farbe: str):
     if "color" in WebseitenParser[-1]:
         WebseitenParser[-1]["color"] = farbe
     else:
-        print("\033[31m" + "Achtung: Du versuchst die Farbe zu ändern, bei einem Element, welches keine Farbe hat!" + "\033[0m")
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Farbe zu ändern, bei einem Element, welches keine Farbe hat!" + "\033[0m")
+
+
+def textdicker():
+    if "weight" in WebseitenParser[-1]:
+        WebseitenParser[-1]["weight"] = str(int(WebseitenParser[-1]["weight"]) + 200)
+        if int(WebseitenParser[-1]["weight"]) > 1000:
+            print(
+                "\033[31m" + "Achtung: Du versuchst die Text Dicke zu ändern, bei einem Element, welches schon die "
+                             "maximale Breite hat!" + "\033[0m")
+            WebseitenParser[-1]["weight"] = "1000"
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Text Dicke hat!"
+            + "\033[0m")
+
+
+def textduenner():
+    if "weight" in WebseitenParser[-1]:
+        WebseitenParser[-1]["weight"] = str(int(WebseitenParser[-1]["weight"]) - 200)
+        if int(WebseitenParser[-1]["weight"]) < 100:
+            print(
+                "\033[31m" + "Achtung: Du versuchst die Text Dicke zu verkleinern, bei einem Element, welches schon die "
+                             "minimale Breite hat!" + "\033[0m")
+            WebseitenParser[-1]["weight"] = "100"
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Text Dicke hat!"
+            + "\033[0m")
 
 
 def collect_html_preset_information(website_parser: list):
