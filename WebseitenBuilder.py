@@ -33,6 +33,34 @@ def hintergrundfarbe(farbe: str):
     WebseitenParser.append({"type": "background-color", "background-color": farbe})
 
 
+def breiter():
+    if "size_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_x"] = str(int(WebseitenParser[-1]["size_x"]) + 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Breite hat!" + "\033[0m")
+
+
+def schmaler():
+    if "size_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_x"] = str(int(WebseitenParser[-1]["size_x"]) - 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Breite hat!" + "\033[0m")
+
+
+def hoeher():
+    if "size_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_y"] = str(int(WebseitenParser[-1]["size_y"]) + 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Höhe zu ändern, bei einem Element, welches keine Höhe hat!" + "\033[0m")
+
+
+def tiefer():
+    if "size_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_y"] = str(int(WebseitenParser[-1]["size_y"]) - 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Höhe zu ändern, bei einem Element, welches keine Höhe hat!" + "\033[0m")
+
+
 def links():
     if "position_y" in WebseitenParser[-1]:
         WebseitenParser[-1]["position_y"] = str(int(WebseitenParser[-1]["position_y"]) - 250)
