@@ -33,6 +33,54 @@ def hintergrundfarbe(farbe: str):
     WebseitenParser.append({"type": "background-color", "background-color": farbe})
 
 
+def links():
+    if "position_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_y"] = str(int(WebseitenParser[-1]["position_y"]) - 250)
+        if int(WebseitenParser[-1]["position_y"]) < 0:
+            print("\033[31m" + "Achtung: Du verschiebst ein Element links außerhalb die Seite!" + "\033[0m")
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def rechts():
+    if "position_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_y"] = str(int(WebseitenParser[-1]["position_y"]) + 250)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def oben():
+    if "position_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_x"] = str(int(WebseitenParser[-1]["position_x"]) - 100)
+        if int(WebseitenParser[-1]["position_x"]) < 0:
+            print("\033[31m" + "Achtung: Du verschiebst ein Element über die Seite!" + "\033[0m")
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def unten():
+    if "position_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_x"] = str(int(WebseitenParser[-1]["position_x"]) + 100)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def textgroesser():
+    if "size" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size"] = str(int(WebseitenParser[-1]["size"]) + 10)
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Schriftgröße zu ändern, bei einem Element, welches keine Schriftgröße hat!" + "\033[0m")
+
+
+def textkleiner():
+    if "size" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size"] = str(int(WebseitenParser[-1]["size"]) - 10)
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Schriftgröße zu ändern, bei einem Element, welches keine Schriftgröße hat!" + "\033[0m")
+
+
 def collect_html_preset_information(website_parser: list):
     title: str = "Meine eigene Webseite"
     icon: str = "https://www.united-internet.de/favicon.ico"
