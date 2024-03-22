@@ -81,6 +81,13 @@ def textkleiner():
             "\033[31m" + "Achtung: Du versuchst die Schriftgröße zu ändern, bei einem Element, welches keine Schriftgröße hat!" + "\033[0m")
 
 
+def farbe(farbe: str):
+    if "color" in WebseitenParser[-1]:
+        WebseitenParser[-1]["color"] = farbe
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Farbe zu ändern, bei einem Element, welches keine Farbe hat!" + "\033[0m")
+
+
 def collect_html_preset_information(website_parser: list):
     title: str = "Meine eigene Webseite"
     icon: str = "https://www.united-internet.de/favicon.ico"
