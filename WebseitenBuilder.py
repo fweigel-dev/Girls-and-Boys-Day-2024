@@ -1,6 +1,10 @@
 WebseitenParser: list = []
 
 
+####################
+# Add new elements #
+####################
+
 def text(text: str):
     WebseitenParser.append(
         {"type": "text", "text": text, "size": 24, "color": "#000000", "position_x": "0", "position_y": "0",
@@ -145,6 +149,84 @@ def textduenner():
             + "\033[0m")
 
 
+############################
+# Modify existing elements #
+############################
+
+
+def verschieben_nach_unten(pixel: int):
+    last_element: dict = get_last_element()
+    if last_element["type"] == "text" or last_element["type"] == "image" or last_element["type"] == "video":
+        last_element["position_x"] = str(int(last_element["position_x"]) + pixel)
+        print(last_element["position_x"])
+    else:
+        log_error(
+            f"Du hast versucht, ein Element vom Typ **{last_element['type']}** zu verschieben. Dieser Typ kann nicht "
+            f"verschoben werden!\n"
+            f"  Du kannst die Methode `verschieben_nach_unten` nur direkt nach Texten, Bildern und Videos benutzen!")
+
+
+def verschieben_nach_oben(pixel: int):
+    last_element: dict = get_last_element()
+    if last_element["type"] == "text" or last_element["type"] == "image" or last_element["type"] == "video":
+        last_element["position_x"] = str(int(last_element["position_x"]) - pixel)
+    else:
+        log_error(
+            f"Du hast versucht, ein Element vom Typ **{last_element['type']}** zu verschieben. Dieser Typ kann nicht "
+            f"verschoben werden!\n"
+            f"  Du kannst die Methode `verschieben_nach_oben` nur direkt nach Texten, Bildern und Videos benutzen!")
+
+
+def verschieben_nach_rechts(pixel: int):
+    last_element: dict = get_last_element()
+    if last_element["type"] == "text" or last_element["type"] == "image" or last_element["type"] == "video":
+        last_element["position_y"] = str(int(last_element["position_y"]) + pixel)
+    else:
+        log_error(
+            f"Du hast versucht, ein Element vom Typ **{last_element['type']}** zu verschieben. Dieser Typ kann nicht "
+            f"verschoben werden!\n"
+            f"  Du kannst die Methode `verschieben_nach_rechts` nur direkt nach Texten, Bildern und Videos benutzen!")
+
+
+def verschieben_nach_links(pixel: int):
+    last_element: dict = get_last_element()
+    if last_element["type"] == "text" or last_element["type"] == "image" or last_element["type"] == "video":
+        last_element["position_y"] = str(int(last_element["position_y"]) - pixel)
+    else:
+        log_error(
+            f"Du hast versucht, ein Element vom Typ **{last_element['type']}** zu verschieben. Dieser Typ kann nicht "
+            f"verschoben werden!\n"
+            f"  Du kannst die Methode `verschieben_nach_links` nur direkt nach Texten, Bildern und Videos benutzen!")
+
+
+##################
+# Util functions #
+##################
+
+def get_last_element():
+    return WebseitenParser[-1]
+
+
+##########################
+# Generate Error Message #
+##########################
+
+def log_error(message: str):
+    formatted_message = (
+            "\n\033[1m\033[97m\033[41m"
+            "+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n"
+            "  ACHTUNG: In deinem Code ist ein Fehler aufgetreten.\n" +
+            f"  {message}\n"
+            "+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n\033[0m"
+    )
+    raise Exception(formatted_message)
+
+
+#################
+# Generate HTML #
+#################
+
+
 def collect_html_preset_information(website_parser: list):
     title: str = "Meine eigene Webseite"
     icon: str = "https://www.united-internet.de/favicon.ico"
@@ -208,7 +290,7 @@ def parse_text_images_videos(json: dict):
     elif json["type"] == "image":
         return f"\n<img src=\"{json['url']}\" style=\"position: absolute; top: {json['position_x']}px; left: {json['position_y']}px; width: {json['size_x']}%; height: {json['size_y']}%;\" alt="">"
     elif json["type"] == "video":
-        return f'\n<iframe width="560" height="315" src="{json["url"]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+        return f'\n<iframe style="position:relative; top:{json["position_x"]}px; left: {json["position_y"]}px; width: {json["size_x"]}%; height: {json["size_y"]}%;" src="{json["url"]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
 
 
 def bauen():
