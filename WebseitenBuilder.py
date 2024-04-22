@@ -158,7 +158,6 @@ def verschieben_nach_unten(pixel: int):
     last_element: dict = get_last_element()
     if last_element["type"] == "text" or last_element["type"] == "image" or last_element["type"] == "video":
         last_element["position_x"] = str(int(last_element["position_x"]) + pixel)
-        print(last_element["position_x"])
     else:
         log_error(
             f"Du hast versucht, ein Element vom Typ **{last_element['type']}** zu verschieben. Dieser Typ kann nicht "
@@ -294,7 +293,6 @@ def parse_text_images_videos(json: dict):
 
 
 def bauen():
-    print(WebseitenParser)
     print("Webseite wird erstellt...")
     with open("index.html", "w") as file:
         print("Datei wird erstellt...")
@@ -303,3 +301,4 @@ def bauen():
             if parser["type"] == "text" or parser["type"] == "image" or parser["type"] == "video":
                 file.write(parse_text_images_videos(parser))
         file.write(generate_html_preset_end())
+        print("Webseite wurde erstellt!")
