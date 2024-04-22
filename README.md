@@ -143,6 +143,32 @@ Platziert das zuletzt erstellte Element auf der X-Achse oben oder unten.
         unten()
         ```
 
+#### `verschieben_nach_rechts(pixel: int)` und `verschieben_nach_links(pixel: int)`
+Verschiebt das zuletzt erstellte Element nach rechts oder links.
+
+- **Beispiel:**
+    - Um das zuletzt erstellte Bild um 50 Pixel nach rechts zu verschieben, schreibst du:
+        ```python
+        verschieben_nach_rechts(50)
+        ```
+    - Um das zuletzt erstellte Bild um 50 Pixel nach links zu verschieben, schreibst du:
+        ```python
+        verschieben_nach_links(50)
+        ```
+
+#### `verschieben_nach_oben(pixel: int)` und `verschieben_nach_unten(pixel: int)`
+Verschiebt das zuletzt erstellte Element nach oben oder unten.
+
+- **Beispiel:**
+    - Um das zuletzt erstellte Bild um 50 Pixel nach oben zu verschieben, schreibst du:
+        ```python
+        verschieben_nach_oben(50)
+        ```
+    - Um das zuletzt erstellte Bild um 50 Pixel nach unten zu verschieben, schreibst du:
+        ```python
+        verschieben_nach_unten(50)
+        ```
+
 ### Text bearbeiten
 
 #### `textgroesser()` und `textkleiner()`
