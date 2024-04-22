@@ -33,6 +33,118 @@ def hintergrundfarbe(farbe: str):
     WebseitenParser.append({"type": "background-color", "background-color": farbe})
 
 
+def breiter():
+    if "size_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_x"] = str(int(WebseitenParser[-1]["size_x"]) + 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Breite hat!" + "\033[0m")
+
+
+def schmaler():
+    if "size_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_x"] = str(int(WebseitenParser[-1]["size_x"]) - 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Breite hat!" + "\033[0m")
+
+
+def hoeher():
+    if "size_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_y"] = str(int(WebseitenParser[-1]["size_y"]) + 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Höhe zu ändern, bei einem Element, welches keine Höhe hat!" + "\033[0m")
+
+
+def tiefer():
+    if "size_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size_y"] = str(int(WebseitenParser[-1]["size_y"]) - 10)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst die Höhe zu ändern, bei einem Element, welches keine Höhe hat!" + "\033[0m")
+
+
+def links():
+    if "position_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_y"] = str(int(WebseitenParser[-1]["position_y"]) - 250)
+        if int(WebseitenParser[-1]["position_y"]) < 0:
+            print("\033[31m" + "Achtung: Du verschiebst ein Element links außerhalb die Seite!" + "\033[0m")
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def rechts():
+    if "position_y" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_y"] = str(int(WebseitenParser[-1]["position_y"]) + 250)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def oben():
+    if "position_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_x"] = str(int(WebseitenParser[-1]["position_x"]) - 100)
+        if int(WebseitenParser[-1]["position_x"]) < 0:
+            print("\033[31m" + "Achtung: Du verschiebst ein Element über die Seite!" + "\033[0m")
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def unten():
+    if "position_x" in WebseitenParser[-1]:
+        WebseitenParser[-1]["position_x"] = str(int(WebseitenParser[-1]["position_x"]) + 100)
+    else:
+        print("\033[31m" + "Achtung: Du versuchst ein Element zu verschieben, welches keine Position hat!" + "\033[0m")
+
+
+def textgroesser():
+    if "size" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size"] = str(int(WebseitenParser[-1]["size"]) + 10)
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Schriftgröße zu ändern, bei einem Element, welches keine Schriftgröße hat!" + "\033[0m")
+
+
+def textkleiner():
+    if "size" in WebseitenParser[-1]:
+        WebseitenParser[-1]["size"] = str(int(WebseitenParser[-1]["size"]) - 10)
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Schriftgröße zu ändern, bei einem Element, welches keine Schriftgröße hat!" + "\033[0m")
+
+
+def farbe(farbe: str):
+    if "color" in WebseitenParser[-1]:
+        WebseitenParser[-1]["color"] = farbe
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Farbe zu ändern, bei einem Element, welches keine Farbe hat!" + "\033[0m")
+
+
+def textdicker():
+    if "weight" in WebseitenParser[-1]:
+        WebseitenParser[-1]["weight"] = str(int(WebseitenParser[-1]["weight"]) + 200)
+        if int(WebseitenParser[-1]["weight"]) > 1000:
+            print(
+                "\033[31m" + "Achtung: Du versuchst die Text Dicke zu ändern, bei einem Element, welches schon die "
+                             "maximale Breite hat!" + "\033[0m")
+            WebseitenParser[-1]["weight"] = "1000"
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Text Dicke hat!"
+            + "\033[0m")
+
+
+def textduenner():
+    if "weight" in WebseitenParser[-1]:
+        WebseitenParser[-1]["weight"] = str(int(WebseitenParser[-1]["weight"]) - 200)
+        if int(WebseitenParser[-1]["weight"]) < 100:
+            print(
+                "\033[31m" + "Achtung: Du versuchst die Text Dicke zu verkleinern, bei einem Element, welches schon die "
+                             "minimale Breite hat!" + "\033[0m")
+            WebseitenParser[-1]["weight"] = "100"
+    else:
+        print(
+            "\033[31m" + "Achtung: Du versuchst die Breite zu ändern, bei einem Element, welches keine Text Dicke hat!"
+            + "\033[0m")
+
+
 def collect_html_preset_information(website_parser: list):
     title: str = "Meine eigene Webseite"
     icon: str = "https://www.united-internet.de/favicon.ico"
@@ -96,7 +208,7 @@ def parse_text_images_videos(json: dict):
     elif json["type"] == "image":
         return f"\n<img src=\"{json['url']}\" style=\"position: absolute; top: {json['position_x']}px; left: {json['position_y']}px; width: {json['size_x']}%; height: {json['size_y']}%;\" alt="">"
     elif json["type"] == "video":
-        return f"\n<video src=\"{json['url']}\" style=\"position: absolute; top: {json['position_x']}px; left: {json['position_y']}px; width: {json['size_x']}%; height: {json['size_y']}%;\"></video>"
+        return f'\n<iframe width="560" height="315" src="{json["url"]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
 
 
 def bauen():
