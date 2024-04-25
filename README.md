@@ -2,6 +2,32 @@
 
 Willkommen bei deinem eigenen Webseiten-Parser! Mit diesem Parser kannst du ganz einfach Elemente wie Texte, Bilder und Videos auf deiner eigenen Webseite platzieren. Hier erfährst du, wie jede Funktion verwendet wird, und bekommst Beispiele, die dir helfen, diese selbst auszuprobieren.
 
+## Zu Hause weiterarbeiten:
+
+Wenn du zu Hause weiter an deiner Webseite arbeiten willst, kannst du diese folgendermaßen machen:
+
+1. Hol dir ein Programm, mit dem du deine Webseite machen kannst. Ein gutes Programm ist PyCharm. Du kannst es hier
+   kostenlos herunterladen: [PyCharm-Community Edition](https://www.jetbrains.com/pycharm/download/?section=windows).
+   Suche nach der kostenlosen Community Edition und lade sie herunter.
+
+2. Kopiere unser Projekt. Dafür klickst du auf den Knopf "Get from VCS".
+   <img src="README_images/GetStarted/1.png" width="50%" height="50%" >
+
+3. Füge diesen Link in das Feld "URL:" ein: `https://github.com/fweigel-dev/Girls-and-Boys-Day-2024.git` und klicke
+   auf "Clone".
+
+4. Dein Bildschirm sollte jetzt so aussehen:
+
+<img src="README_images/GetStarted/3.png" width="50%" height="50%" >
+
+5. Lade deinen eigenen Code aus der E-Mail herunter.
+
+6. Öffne die Dateien index.html und MeineWebseite.py aus der E-Mail und kopiere den Inhalt in PyCharm.
+
+7. Klicke auf das Symbol von deinem bevorzugten Browser in der index.html.
+
+8. Wenn du Änderungen gemacht hast, klicke auf den grünen Dreieck/Play-Knopf oben rechts, um deinen Code zu starten.
+
 ## Grundlegende Funktionen
 
 ### Texte
